@@ -1,6 +1,6 @@
-# depth 
+# depth
 
-[![GoDoc](https://godoc.org/github.com/KyleBanks/depth?status.svg)](https://godoc.org/github.com/KyleBanks/depth)&nbsp; 
+[![GoDoc](https://godoc.org/github.com/KyleBanks/depth?status.svg)](https://godoc.org/github.com/KyleBanks/depth)&nbsp;
 [![Build Status](https://travis-ci.org/KyleBanks/depth.svg?branch=master)](https://travis-ci.org/KyleBanks/depth)&nbsp;
 [![Go Report Card](https://goreportcard.com/badge/github.com/KyleBanks/depth)](https://goreportcard.com/report/github.com/KyleBanks/depth)&nbsp;
 [![Coverage Status](https://coveralls.io/repos/github/KyleBanks/depth/badge.svg?branch=master)](https://coveralls.io/github/KyleBanks/depth?branch=master)
@@ -9,10 +9,8 @@
 
 ## Install
 
-Download the appropriate binary for your platform from the [Releases](https://github.com/KyleBanks/depth/releases) page, or:
-
 ```sh
-go get github.com/KyleBanks/depth/cmd/depth
+go install github.com/JammUtkarsh/depth/cmd/depth@latest
 ```
 
 ## Usage
@@ -45,9 +43,9 @@ github.com/KyleBanks/depth/cmd/depth
 Or you can use a relative path, for example:
 
 ```sh
-$ depth .
-$ depth ./cmd/depth
-$ depth ../
+depth .
+depth ./cmd/depth
+depth ../
 ```
 
 You can also use `depth` on the Go standard library:
@@ -87,6 +85,34 @@ github.com/KyleBanks/depth
   ├ sort
   └ strings
 7 dependencies (7 internal, 0 external, 0 testing).
+```
+
+#### `-v` *Change*
+
+By default, `depth` doesn't append versions of external dependencies. You can add `-v` flag to show the version of external dependencies.
+
+```sh
+$ depth -v . # From one of my projects https://github.com/JammUtkarsh/cypherDecipher
+.
+  ├ unicode/utf8
+  └ github.com/tjarratt/babble@v0.0.0-20210505082055-cbca2a4833c1
+    ├ flag
+    ├ fmt
+    ├ io/ioutil
+    ├ math/rand
+    ├ os
+    ├ strings
+    └ time
+```
+
+#### `-std` *Change*
+
+For large projects, where you just want to know the external dependencies, use `-std` flag. The primary purpose of this flag is to reduce clutter.
+
+```sh
+$ depth -std . # From one of my projects https://github.com/JammUtkarsh/cypherDecipher
+.
+  └ github.com/tjarratt/babble
 ```
 
 #### `-internal`
@@ -132,11 +158,11 @@ strings
 18 dependencies (18 internal, 0 external, 0 testing).
 ```
 
-#### `-max` 
+#### `-max`
 
 The `-max` flag limits the dependency tree to the maximum depth provided. For example, if you supply `-max 1` on the `depth` package, your output would look like so:
 
-```
+```sh
 $ depth -max 1 github.com/KyleBanks/depth/cmd/depth
 github.com/KyleBanks/depth/cmd/depth
   ├ encoding/json

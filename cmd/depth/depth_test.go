@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/KyleBanks/depth"
+	"github.com/JammUtkarsh/depth"
 )
 
 func Test_parse(t *testing.T) {
